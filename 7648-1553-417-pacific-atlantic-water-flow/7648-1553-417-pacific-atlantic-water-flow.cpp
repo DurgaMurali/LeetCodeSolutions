@@ -32,41 +32,29 @@ public:
             bfs_pacific.pop();
             int row = coord.first;
             int col = coord.second;
-            //std::cout << row << ", " << col << " - ";
 
-            /*if(pacific_matrix[row][col] == 1)
-                continue;*/
             if(pacific_matrix[row][col] == 0)
                 pacific_matrix[row][col] = 1;
 
-            if(row+1 < m && heights[row][col] <= heights[row+1][col])
+            if(row+1 < m && heights[row][col] <= heights[row+1][col] && pacific_matrix[row+1][col] != 1)
             {
-                if(pacific_matrix[row+1][col] != 1)
-                    bfs_pacific.push(make_pair(row+1, col));
-                //std::cout << "(" << row+1 << "," << col << "), ";
+                bfs_pacific.push(make_pair(row+1, col));
             }
 
-            if(col+1 < n && heights[row][col] <= heights[row][col+1])
+            if(col+1 < n && heights[row][col] <= heights[row][col+1] && pacific_matrix[row][col+1] != 1)
             {
-                if(pacific_matrix[row][col+1] != 1)
-                    bfs_pacific.push(make_pair(row, col+1));
-                //std::cout << "(" << row << "," << col+1 << ")";
+                bfs_pacific.push(make_pair(row, col+1));
             }
 
-            if(row-1 >= 0 && heights[row][col] <= heights[row-1][col])
+            if(row-1 >= 0 && heights[row][col] <= heights[row-1][col] && pacific_matrix[row-1][col] != 1)
             {
-                if(pacific_matrix[row-1][col] != 1)
-                    bfs_pacific.push(make_pair(row-1, col));
-                //std::cout << "(" << row+1 << "," << col << "), ";
+                bfs_pacific.push(make_pair(row-1, col));
             }
 
-            if(col-1 >= 0 && heights[row][col] <= heights[row][col-1])
+            if(col-1 >= 0 && heights[row][col] <= heights[row][col-1] && pacific_matrix[row][col-1] != 1)
             {
-                if(pacific_matrix[row][col-1] != 1)
-                    bfs_pacific.push(make_pair(row, col-1));
-                //std::cout << "(" << row << "," << col+1 << ")";
+                bfs_pacific.push(make_pair(row, col-1));
             }
-            //std::cout << std::endl;
         }
         
         /*for(int i=0; i<m; ++i)
@@ -88,28 +76,24 @@ public:
             if(atlantic_matrix[row][col] == 0)
                 atlantic_matrix[row][col] = 1;
 
-            if(row-1 >= 0 && heights[row][col] <= heights[row-1][col])
+            if(row-1 >= 0 && heights[row][col] <= heights[row-1][col] && atlantic_matrix[row-1][col] != 1)
             {
-                if(atlantic_matrix[row-1][col] != 1)
-                    bfs_atlantic.push(make_pair(row-1, col));
+                bfs_atlantic.push(make_pair(row-1, col));
             }
 
-            if(col-1 >= 0 && heights[row][col] <= heights[row][col-1])
+            if(col-1 >= 0 && heights[row][col] <= heights[row][col-1] && atlantic_matrix[row][col-1] != 1)
             {
-                if(atlantic_matrix[row][col-1] != 1)
-                    bfs_atlantic.push(make_pair(row, col-1));
+                bfs_atlantic.push(make_pair(row, col-1));
             }
 
-            if(row+1 < m && heights[row][col] <= heights[row+1][col])
+            if(row+1 < m && heights[row][col] <= heights[row+1][col] && atlantic_matrix[row+1][col] != 1)
             {
-                if(atlantic_matrix[row+1][col] != 1)
-                    bfs_atlantic.push(make_pair(row+1, col));
+                bfs_atlantic.push(make_pair(row+1, col));
             }
 
-            if(col+1 < n && heights[row][col] <= heights[row][col+1])
+            if(col+1 < n && heights[row][col] <= heights[row][col+1] && atlantic_matrix[row][col+1] != 1)
             {
-                if(atlantic_matrix[row][col+1] != 1)
-                    bfs_atlantic.push(make_pair(row, col+1));
+                bfs_atlantic.push(make_pair(row, col+1));
             }
         }
 
